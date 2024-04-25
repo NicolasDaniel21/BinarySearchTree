@@ -1,0 +1,11 @@
+digraph BST {
+45 [label="45"];
+45 -> 35 [label="left"];
+35 [label="35"];
+35 -> 15 [label="left"];
+15 [label="15"];
+45 -> 65 [label="right"];
+65 [label="65"];
+65 -> 55 [label="left"];
+55 [label="55"];
+}
