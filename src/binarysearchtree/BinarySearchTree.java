@@ -1,4 +1,7 @@
 package binarysearchtree;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import node.Node;
 
 public class BinarySearchTree {
@@ -6,6 +9,37 @@ public class BinarySearchTree {
 
     public BinarySearchTree() {
         this.root = null;
+    }
+
+    public Node getRoot() {
+        return root;
+    }
+
+    // New method to generate DOT file
+    public void generateDotFile(Node root, String fileName) throws IOException {
+        try (FileWriter writer = new FileWriter(fileName)) {
+            writer.write("digraph BST {\n");
+            generateDotCode(root, writer);
+            writer.write("}");
+        }
+    }
+
+    private void generateDotCode(Node node, FileWriter writer) throws IOException {
+        if (node == null) {
+            return;
+        }
+
+        writer.write(String.format("%d [label=\"%d\"];\n", node.getValue(), node.getValue()));
+
+        if (node.getLeft() != null) {
+            writer.write(String.format("%d -> %d [label=\"left\"];\n", node.getValue(), node.getLeft().getValue()));
+            generateDotCode(node.getLeft(), writer);
+        }
+
+        if (node.getRight() != null) {
+            writer.write(String.format("%d -> %d [label=\"right\"];\n", node.getValue(), node.getRight().getValue()));
+            generateDotCode(node.getRight(), writer);
+        }
     }
 
     // Função para inserir um novo nodo na árvore

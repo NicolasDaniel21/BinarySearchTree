@@ -1,9 +1,11 @@
 package Main;
 
+import java.io.IOException;
+
 import binarysearchtree.BinarySearchTree;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         BinarySearchTree tree = new BinarySearchTree();
 
         // Inserindo elementos na árvore
@@ -33,6 +35,7 @@ public class Main {
         System.out.println("Em ordem novamente: ");
         tree.inOrder();
 
+        tree.generateDotFile(tree.getRoot(), "bst_pre_order.dot");
 
     }
 }
